@@ -61,51 +61,20 @@ $.getJSON(url, function (json) {
 
     // Copia de valores de categorias
 
-    let categorias = [""];
-
-    for(var i = 1; i < json.records.length; i++){ 
-      categorias.push(json.records[i-1].CATEGORIA); 
-    }
-
-    categorias.shift();
-    
-    //Filtro de Unica Categoria
-
-    for(var i = 0; i < categorias.length; i++){
-      for(var j = i ; j < categorias.length; j++){
-        if(categorias[i].includes(categorias[j]) && i!=j){
-          //categorias.splice(j,1);
-          if(categorias[j].includes(" ")){     //[i]     
-          }
-          else{
-            categorias[j] = " " ;     //[i]    
-          }
-        }
-      }
-    }
-
-    // creacion div de showData
+   
 
     let div = document.createElement('div');
-    div.id = 'content';
     div.className = 'container';
     //Cantidad de Categorias
-    for(var i=0; i < categorias.length; i++){
-      
-      if( categorias[i] != " " ){ //Si la categoria no está vacia se procede
 
         let row = document.createElement("div");
-        row.className = 'row product-item';
+        row.className = 'row';
         div.appendChild(row);
         
-        let tituloCategoria = document.createElement("h2");
-        tituloCategoria.className = 'tituloCategorias';
-        tituloCategoria.textContent = categorias[i];
-        row.appendChild(tituloCategoria);
 
         for(var j=1; j < json.records.length; j++){
 
-          if(json.records[j-1].CATEGORIA.includes(categorias[i]) && categorias[i] != " " && json.records[j-1].DISPONIBILIDAD.includes("si") ){
+          if( json.records[j-1].OFERTA > 0 ){
 
             let col = document.createElement("div");
             col.className = 'col-xl-3';
@@ -123,32 +92,57 @@ $.getJSON(url, function (json) {
 
             let imgs = document.createElement("img");
             imgs.className= 'img'
-            imgs.src= "Images/Products/"+j+".png";
+            imgs.src= "images/productos/"+json.records[j-1].CODIGOPRODUCTO+".jpg";
             img.appendChild(imgs);
 
 
             //Foto Y Descripcion de producto
 
             let titulo = document.createElement("h5");
-            titulo.className = 'titulo';
-            titulo.textContent = json.records[j-1].NOMBRE;
+
+            if(json.records[j-1].DISPONIBILIDAD.includes('si')){
+              titulo.className = 'titulo';
+            }
+            else{
+              titulo.className = 'titulo nodisponible';
+            }
+            titulo.textContent = json.records[j-1].MARCA + " " + json.records[j-1].NOMBRE;
             texto.appendChild(titulo);
+
             let descripcion = document.createElement("small");
-            descripcion.className = 'descripcion';
-            descripcion.textContent = json.records[j-1].DESCRIPCION;
+            if(json.records[j-1].DISPONIBILIDAD.includes('si')){
+              descripcion.className = 'descripcion';
+            }
+            else{
+              descripcion.className = 'descripcion nodisponible';
+            }
+            descripcion.textContent = json.records[j-1].CARACTERISTICAS;
             texto.appendChild(descripcion);
+
+
+
             let precio = document.createElement("p");
-            precio.className = 'precio';
-            precio.textContent = "$"+json.records[j-1].VALOR;
+            if(json.records[j-1].DISPONIBILIDAD.includes('si')){
+              descripcion.className = 'precio';
+            }
+            else{
+              precio.className = 'precio nodisponible';
+            }
+            precio.textContent = "USD "+ json.records[j-1].VALOR;
             texto.appendChild(precio);
+
+            let stock = document.createElement("div");
+            stock.className = 'stock';
+            stock.textContent = "Stock Disponible " + json.records[j-1].CANTIDAD;
+            texto.appendChild(stock);
 
           }
 
         }
 
-      }
+      
 
-    }
+    
 
         
         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
@@ -185,6 +179,7 @@ $.getJSON(url, function (json) {
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="styles.scss">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
 
 <style>
@@ -222,6 +217,12 @@ font-size: 1.8vh;
 
       <div class="aparece" style="display: none;">
         
+        <div class="btn-whatsapp">
+          <a href="https://api.whatsapp.com/send?phone=+5491130887620&text=%C2%A1Hola%20Matias!%20Me%20gustaria%20hacerte%20una%20consulta%20acerca%20de%20tus%20productos%20en%20A.R.D." target="_blank">
+          <img src="http://s2.accesoperu.com/logos/btn_whatsapp.png" alt="">
+          </a>
+        </div>
+
         <div class="encabezado">
           <div class="degradado">
             <img src="images/Logo.png">
@@ -229,12 +230,7 @@ font-size: 1.8vh;
         </div>
         
 
-        <div style="margin: 5vh 0 -5vh 0;">
-          <form action="">
-            <input type="search" list="datalistOptions" id="exampleDataList" onkeyup="myFunction()" placeholder="Busqueda por nombre" required>
-            <i class="fa fa-search"></i>
-          </form>
-        </div>       
+             
         
 
         <div class="container-fluid categorias" style="margin-top:4vh;">
@@ -266,7 +262,7 @@ font-size: 1.8vh;
                 <div class="col-lg-4">
                     <div class="contenedor">
                             <img src="images/seccion/PelotasIndex.jpg" />
-                            <a href="pelotas.html">
+                            <a href="pages/pelotas.html">
                             <div class="centrado"><button type="button" class="btn btn-danger"><span class="text-Button">Pelotas</span> </button></div>
                             </a>
                     </div>
@@ -290,6 +286,10 @@ font-size: 1.8vh;
 
             <input id="b1" type="button" onclick="read_value()"class="btn" style="height: 8vh; width: 1vh; font-size: 3vh; margin-bottom: 3vh; display: none; border:1px solid white; color:white;" value="Ver Listado" />
             
+            <div align="center" style="margin: 3vh 0;">
+              <h4>¡Ofertas!</h4>
+            </div>
+
             <div id="showData">
             </div>
 
@@ -298,6 +298,41 @@ font-size: 1.8vh;
             </div>
 
         </div>
+
+        <div class="container" style="margin-top:4vh;">
+          <h3 style="margin-bottom: 5vh;">¿Como comprar en A.R.D.?</h3>
+          <div class="row justify-content-around text-center">
+              <div class="col-xl-2">
+                  <i class='bx bx-search-alt-2'></i>
+                  <p>
+                     <span class="namePaso">Paso 1:</span> <br>
+                     <span class="nameInstruccion">Buscas en nuestro catalogo el producto que queres adquirir</span>
+                  </p>
+              </div>
+              <div class="col-xl-2">
+                  <i class='bx bxl-whatsapp' ></i>
+                  <p>
+                      <span class="namePaso">Paso 2:</span> <br>
+                      <span class="nameInstruccion">Nos contactas para adquirir el producto</span>
+                  </p>
+              </div>
+              <div class="col-xl-2">
+                  <i class='bx bx-money' ></i>
+                  <p>
+                      <span class="namePaso">Paso 3:</span> <br>
+                      <span class="nameInstruccion">Realizas el pago por cualquiera de los medios disponibles</span>
+                  </p>
+              </div>
+
+              <div class="col-xl-2">
+                  <i class='bx bxs-check-circle' ></i>
+                  <p>
+                      <span class="namePaso">Paso 4:</span> <br>
+                     <span class="nameInstruccion">Esperar que en poco tiempo te llega tu compra!</span>
+                  </p>
+              </div>
+          </div>
+      </div>
         
         <section class="footer" style=" margin-top: 6vh;">
             <p class="text" style="color: black;"><a href="https://api.whatsapp.com/send?phone=+5491166965813&text=%C2%A1Hola!%20%C2%BFC%C3%B3mo%20estas?%20Me%20gustar%C3%ADa%20hacerte%20una%20consulta%20acerca%20de%20la%20carta%20digital">Diseño y Desarrollo por Diego Simón</a></p>

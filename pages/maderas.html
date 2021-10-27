@@ -71,7 +71,7 @@ $.getJSON(url, function (json) {
 
             for(var j=1; j < json.records.length; j++){
             
-              if(json.records[j-1].MARCA.includes(categorias[i]) && ( json.records[j-1].CANTIDAD > 0 ) && (json.records[j-1].CATEGORIA.includes('Madera') || json.records[j-1].CATEGORIA.includes('Paletas') ) ){
+              if(json.records[j-1].MARCA.includes(categorias[i])  && (json.records[j-1].CATEGORIA.includes('Madera') || json.records[j-1].CATEGORIA.includes('Paletas') ) ){
 
                 let col = document.createElement("div");
                 col.className = 'col-xl-3';
@@ -200,6 +200,12 @@ font-size: 1.8vh;
 </head>
 <body id="cuerpo">
         
+        <div class="btn-whatsapp">
+          <a href="https://api.whatsapp.com/send?phone=+5491130887620&text=%C2%A1Hola%20Matias!%20Me%20gustaria%20hacerte%20una%20consulta%20acerca%20de%20tus%20productos%20en%20A.R.D." target="_blank">
+          <img src="http://s2.accesoperu.com/logos/btn_whatsapp.png" alt="">
+          </a>
+        </div>
+
         <div class="encabezado">
           <div class="degradado">
             <img src="../images/Logo.png">
