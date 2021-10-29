@@ -54,6 +54,7 @@ $.getJSON(url, function (json) {
     // creacion div de showData
 
     let div = document.createElement('div');
+    div.id = 'content';
     div.className = 'container';
 
 
@@ -74,7 +75,7 @@ $.getJSON(url, function (json) {
               if(json.records[j-1].MARCA.includes(categorias[i])  && (json.records[j-1].CATEGORIA.includes('Madera') || json.records[j-1].CATEGORIA.includes('Paletas') ) ){
 
                 let col = document.createElement("div");
-                col.className = 'col-xl-3';
+                col.className = 'col-xl-3 product-item';
                 row.appendChild(col);
 
                 // Producto
@@ -217,6 +218,12 @@ font-size: 1.8vh;
           <h1>Maderas</h1>
         </div>       
         
+        <div class="buscador">
+          <form action="">
+            <input type="search" list="datalistOptions" id="exampleDataList" onkeyup="myFunction()" placeholder="Busqueda por nombre" required>
+            <i class="fa fa-search"></i>
+          </form>
+        </div> 
 
         <div>
 

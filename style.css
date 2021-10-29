@@ -72,7 +72,7 @@
   .informacion small{
     font-size: 10px; /*1.5vh*/
   }
-  .informacion p{
+  .informacion .precio{
     font-size: 15px; /*2vh*/
     position: absolute;
     top: 80%;
@@ -256,5 +256,114 @@ margin: 0 0.5vh;
   border-radius:50%;
   line-height:80px;
   text-align:center;
+  z-index:555;
+}
+.btn-whatsapppop{
+  color: #fff;
+  bottom:10%;
+  border-radius:50%;
+  line-height:80px;
+  text-align:center;
   z-index:999;
+}
+.btn-whatsapppop button{
+  background-color: green;
+  width:20vh;
+  height:50px;
+}
+.imgFiltro{
+  height: 28px;
+  width: 50px;
+}
+.buscador{
+  margin: 7vh 0 -5vh 0;
+}
+
+
+.overlay { 
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgb(0, 0, 0);
+  color: transparent;
+  transition: opacity 500ms;
+  visibility: hidden;
+  overflow-y:visible;
+  opacity: 0;
+  z-index: 888;
+}
+
+.overlay:target{
+  visibility: visible;
+  opacity: 1;
+}
+
+#popupBody{
+  width: 100%;
+  height: 100%;
+padding: 2%;
+border-radius: 15px;
+box-shadow: 0 0 5px #CCC;
+background: rgb(255, 255, 255);
+color: black;
+position: relative;
+transition: all 5s ease-in-out;
+overflow-y:visible;
+}
+
+#cerrar{
+
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #d03d41;
+  transition: all 20ms;
+}
+#botondetalle{
+  display: flex;
+  position: absolute;
+  top: 79%;
+  background-color: #d03d41;
+  border-radius: 10px;
+  border-color: #d03d41;;
+  left: 50%;
+}
+
+/*PopUp Product Design*/
+
+.datos{
+  padding: 0 5% 0 5%;
+}
+.tituloPopup{
+  margin-top: 23px;
+}
+.titulopop{
+  margin-top: 2vh;
+  text-align: left;
+}
+.col-xl-12{
+  margin-top: 20px;
+}
+.col-xl-12 h3{
+  font-size: 18px;
+}
+.col-xl-12 h4{
+  font-size: 15px;
+  text-align: left;
+  margin-bottom: -15px;
+}
+.col-xl-12 img{
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+}
+.col-xl-12 p{
+  text-align: left;
+  font-size: 12px;
+  margin-bottom: -10px;
 }
