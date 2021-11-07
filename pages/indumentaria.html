@@ -236,6 +236,7 @@ if( categorias[i] != " " ){
 
       let awpp = document.createElement("a");
       awpp.href = "https://api.whatsapp.com/send?phone=+5491130887620&text=%C2%A1Hola%20Matias!%20Me%20gustaria%20hacerte%20una%20consulta%20acerca%20de%20la%20"+json.records[j-1].CATEGORIA+"%20"+json.records[j-1].MARCA+"%20"+json.records[j-1].NOMBRE+"%20Codigo%20de%20producto%20"+json.records[j-1].CODIGOPRODUCTO;
+      awpp.style = "text-decoration: none;";
       btnwpp.appendChild(awpp);
       
       let imgwpp = document.createElement("button");
@@ -243,7 +244,6 @@ if( categorias[i] != " " ){
 
       let txtwpp = document.createElement("p");
       txtwpp.textContent="Consultar Producto";
-      txtwpp.style = "text-decoration: none;";
       imgwpp.appendChild(txtwpp);
 
       }
