@@ -242,6 +242,14 @@ $.getJSON(url, function (json) {
                 carac.textContent = json.records[j-1].CARACTERISTICAS;
                 colpopacarac.appendChild(carac);
 
+                let colpopprice = document.createElement("div");
+                colpopprice.className = "col-xl-12";
+                rowpop.appendChild(colpopprice);
+                let price = document.createElement("p");
+                price.className = "precioPop";
+                price.textContent = "USD " + json.records[j-1].VALOR;
+                colpopprice.appendChild(price);
+
 
 
                 let btnwpp = document.createElement("div");
@@ -257,6 +265,7 @@ $.getJSON(url, function (json) {
 
                 let txtwpp = document.createElement("p");
                 txtwpp.textContent="Consultar Producto";
+                txtwpp.style = "text-decoration: none;";
                 imgwpp.appendChild(txtwpp);
 
                 }

@@ -33,130 +33,7 @@
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script>
 
-  var script_url = "https://script.google.com/macros/s/AKfycbxKp1tpBXO0AkHiAR5yIp9ENBD554CbJ4LHVDHlkee3vodcjtso/exec";
-
-  // print the returned data
-  function ctrlq(e) {
-
-
-	$("#re").html(e.result);
-	$("#re").css("visibility","visible");
-	read_value();
-
-  }
-
-
-
-
-function read_value() {
-
-$("#re").css("visibility","hidden");
-
-   document.getElementById("loader").style.visibility = "visible";
- var url = script_url+"?action=read";
-
-$.getJSON(url, function (json) {
-
-    // Copia de valores de categorias
-
-   
-
-    let div = document.createElement('div');
-    div.className = 'container';
-    //Cantidad de Categorias
-
-        let row = document.createElement("div");
-        row.className = 'row';
-        div.appendChild(row);
-        
-
-        for(var j=1; j < json.records.length; j++){
-
-          if( json.records[j-1].OFERTA > 0 ){
-
-            let col = document.createElement("div");
-            col.className = 'col-xl-3';
-            row.appendChild(col);
-
-            // Producto
-
-            let texto = document.createElement("div");
-            texto.className = 'col-8 informacion';
-            col.appendChild(texto);
-
-            let img = document.createElement("div");
-            img.className = 'col-4';
-            col.appendChild(img);
-
-            let imgs = document.createElement("img");
-            imgs.className= 'img'
-            imgs.src= "images/productos/"+json.records[j-1].CODIGOPRODUCTO+".jpg";
-            img.appendChild(imgs);
-
-
-            //Foto Y Descripcion de producto
-
-            let titulo = document.createElement("h5");
-
-            if(json.records[j-1].DISPONIBILIDAD.includes('si')){
-              titulo.className = 'titulo';
-            }
-            else{
-              titulo.className = 'titulo nodisponible';
-            }
-            titulo.textContent = json.records[j-1].MARCA + " " + json.records[j-1].NOMBRE;
-            texto.appendChild(titulo);
-
-            let descripcion = document.createElement("small");
-            if(json.records[j-1].DISPONIBILIDAD.includes('si')){
-              descripcion.className = 'descripcion';
-            }
-            else{
-              descripcion.className = 'descripcion nodisponible';
-            }
-            descripcion.textContent = json.records[j-1].CARACTERISTICAS;
-            texto.appendChild(descripcion);
-
-
-
-            let precio = document.createElement("p");
-            if(json.records[j-1].DISPONIBILIDAD.includes('si')){
-              descripcion.className = 'precio';
-            }
-            else{
-              precio.className = 'precio nodisponible';
-            }
-            precio.textContent = "USD "+ json.records[j-1].VALOR;
-            texto.appendChild(precio);
-
-            let stock = document.createElement("div");
-            stock.className = 'stock';
-            stock.textContent = "Stock Disponible " + json.records[j-1].CANTIDAD;
-            texto.appendChild(stock);
-
-          }
-
-        }
-
-      
-
-    
-
-        
-        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showData");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(div);
-
-		document.getElementById("loader").style.visibility = "hidden";
-    document.getElementById("loader").style.display = "none";
-		$("#re").css("visibility","visible");
-    });
-	}
-
-  </script>
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -280,24 +157,7 @@ font-size: 1.8vh;
         </div>
 
 
-        <div>
-
-            <p id="re"></p>
-
-            <input id="b1" type="button" onclick="read_value()"class="btn" style="height: 8vh; width: 1vh; font-size: 3vh; margin-bottom: 3vh; display: none; border:1px solid white; color:white;" value="Ver Listado" />
-            
-            <div align="center" style="margin: 3vh 0;">
-              <h4>¡Ofertas!</h4>
-            </div>
-
-            <div id="showData">
-            </div>
-
-            <div id="loader" align="center">
-                <lord-icon src="https://cdn.lordicon.com/xjovhxra.json" trigger="loop" colors="primary:#ffffff,secondary:#1e212a" style="width:175px;height:175px"></lord-icon>
-            </div>
-
-        </div>
+    
 
         <div class="container" style="margin-top:4vh;">
           <h3 style="margin-bottom: 5vh;">¿Como comprar en A.R.D.?</h3>

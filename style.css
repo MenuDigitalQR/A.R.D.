@@ -80,7 +80,9 @@
     background-color: #d03d41;
     height: 100vh;
   }
-
+  .descripcion{
+    font-size: 10px;
+  }
 /* search design*/
 
   form{
@@ -355,18 +357,18 @@ overflow-y:visible;
   margin-top: 23px;
 }
 .titulopop{
-  margin-top: 2vh;
+  margin-top: 2.7vh;
   text-align: left;
 }
 .col-xl-12{
   margin-top: 20px;
 }
 .col-xl-12 h3{
-  font-size: 18px;
+  font-size: 2.7vh;
   margin-bottom: -20px;
 }
 .col-xl-12 h4{
-  font-size: 15px;
+  font-size: 2.3vh;
   text-align: left;
   margin-bottom: -15px;
 }
@@ -377,6 +379,10 @@ overflow-y:visible;
 }
 .col-xl-12 p{
   text-align: left;
-  font-size: 12px;
+  font-size: 1.7vh;
   margin-bottom: -10px;
+}
+.col-xl-12 .precioPop{
+  font-size: 2vh;
+  margin-top: 2vh;
 }
