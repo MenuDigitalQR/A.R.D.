@@ -106,7 +106,7 @@ if( categorias[i] != " " ){
       else{
         titulo.className = 'titulo nodisponible';
       }
-      titulo.textContent = json.records[j-1].MARCA + " " + json.records[j-1].NOMBRE;
+      titulo.textContent = json.records[j-1].MARCA + " " + json.records[j-1].NOMBRE + " " + json.records[j-1].COLOR;
       texto.appendChild(titulo);
       let descripcion = document.createElement("small");
       if(json.records[j-1].DISPONIBILIDAD.includes('si')){
