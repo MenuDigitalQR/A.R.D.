@@ -16,10 +16,7 @@
 
   }
 
-
-
-
-function read_value() {
+  function read_value() {
 
 $("#re").css("visibility","hidden");
 
@@ -31,7 +28,7 @@ $.getJSON(url, function (json) {
   let categorias = [""];
 
   for(var i = 1; i < json.records.length; i++){ 
-    if(json.records[i-1].CATEGORIA.includes('Goma')){
+    if(json.records[i-1].CATEGORIA.includes('Varios')){
       categorias.push(json.records[i-1].MARCA); 
     }
   }
@@ -54,117 +51,219 @@ $.getJSON(url, function (json) {
     // creacion div de showData
 
     let div = document.createElement('div');
+    div.id = 'content';
     div.className = 'container';
 
 
-        
-        
+    for(var i=0; i < categorias.length; i++){
 
-        for(var i=0; i < categorias.length; i++){
+if( categorias[i] != " " ){
 
-          if( categorias[i] != " " ){
+  let row = document.createElement("div");
+  row.className = 'row';
+  div.appendChild(row);
 
-            let row = document.createElement("div");
-            row.className = 'row';
-            div.appendChild(row);
-            let tituloCategoria = document.createElement("h2");
-            tituloCategoria.className = 'tituloCategorias';
-            tituloCategoria.textContent = categorias[i];
-            row.appendChild(tituloCategoria);
+  let tituloCategoria = document.createElement("h2");
+  tituloCategoria.className = 'tituloCategorias';
+  tituloCategoria.textContent = categorias[i];
+  row.appendChild(tituloCategoria);
+  
 
-            for(var j=1; j < json.records.length; j++){
-            
-              if(json.records[j-1].MARCA.includes(categorias[i]) && ( json.records[j-1].CANTIDAD_ROJO > 0  || json.records[j-1].CANTIDAD_NEGRO > 0 ) ){
+  for(var j=1; j < json.records.length; j++){
+  
+    if(json.records[j-1].MARCA.includes(categorias[i]) && (json.records[j-1].CATEGORIA.includes('Pelotas') ) ){
 
-                let col = document.createElement("div");
-                col.className = 'col-xl-3';
-                row.appendChild(col);
+      let col = document.createElement("div");
+      col.className = 'col-xl-3 product-item';
+      col.category = json.records[j-1].MARCA;
+      row.appendChild(col);
 
-                // Producto
+      // Producto
 
-                let texto = document.createElement("div");
-                texto.className = 'col-8 informacion';
-                col.appendChild(texto);
+      let texto = document.createElement("div");
+      texto.className = 'col-8 informacion';
+      col.appendChild(texto);
 
-                let img = document.createElement("div");
-                img.className = 'col-4';
-                col.appendChild(img);
+      let img = document.createElement("div");
+      img.className = 'col-4';
+      col.appendChild(img);
 
-                let imgs = document.createElement("img");
-                imgs.className= 'img'
-                imgs.src= "../images/productos/"+json.records[j-1].CODIGOPRODUCTO+".jpg";
-                img.appendChild(imgs);
-
-
-                //Foto Y Descripcion de producto
-
-                let titulo = document.createElement("h5");
-                if(json.records[j-1].DISPONIBILIDAD.includes('si')){
-                  titulo.className = 'titulo';
-                }
-                else{
-                  titulo.className = 'titulo nodisponible';
-                }
-                titulo.textContent = json.records[j-1].MARCA + " " + json.records[j-1].NOMBRE;
-                texto.appendChild(titulo);
-                let descripcion = document.createElement("small");
-                if(json.records[j-1].DISPONIBILIDAD.includes('si')){
-                  descripcion.className = 'descripcion';
-                }
-                else{
-                  descripcion.className = 'descripcion nodisponible';
-                }
-                descripcion.textContent = json.records[j-1].CARACTERISTICAS;
-                texto.appendChild(descripcion);
+      let imgs = document.createElement("img");
+      imgs.className= 'img'
+      imgs.src= "../images/productos/"+json.records[j-1].CODIGOPRODUCTO+".jpg";
+      img.appendChild(imgs);
 
 
+      //Foto Y Descripcion de producto
 
-                let precio = document.createElement("p");
-                if(json.records[j-1].DISPONIBILIDAD.includes('si')){
-                  precio.className = 'precio';
-                }
-                else{
-                  precio.className = 'precio nodisponible';
-                }
-                precio.textContent = "USD "+ json.records[j-1].VALOR;
-                texto.appendChild(precio);
-
-                let color = document.createElement("div");
-                color.className = 'colorGoma';
-                texto.appendChild(color);
-
-                let pals = document.createElement("small");
-                pals.textContent = "Stock: ";
-                color.appendChild(pals);
-
-                let colorRojo = document.createElement("div");
-                colorRojo.className = 'colorRojo';
-                color.appendChild(colorRojo);
-
-                let cantidadRojo = document.createElement("small");
-                cantidadRojo.className = 'cantidadGomaRoja';
-                cantidadRojo.textContent = json.records[j-1].CANTIDAD_ROJO;
-                color.appendChild(cantidadRojo);
-
-                let colorNegro = document.createElement("div");
-                colorNegro.className = 'colorNegro';
-                color.appendChild(colorNegro);
-
-                let cantidadNegro = document.createElement("small");
-                cantidadNegro.className = 'cantidadGomaNegro';
-                cantidadNegro.textContent = json.records[j-1].CANTIDAD_NEGRO;
-                color.appendChild(cantidadNegro);
+      let titulo = document.createElement("h5");
+      if(json.records[j-1].DISPONIBILIDAD.includes('si')){
+        titulo.className = 'titulo';
+      }
+      else{
+        titulo.className = 'titulo nodisponible';
+      }
+      titulo.textContent = json.records[j-1].MARCA + " " + json.records[j-1].NOMBRE + " " + json.records[j-1].COLOR;
+      texto.appendChild(titulo);
+      let descripcion = document.createElement("small");
+      if(json.records[j-1].DISPONIBILIDAD.includes('si')){
+        descripcion.className = 'descripcion';
+      }
+      else{
+        descripcion.className = 'descripcion nodisponible';
+      }
+      descripcion.textContent = json.records[j-1].CARACTERISTICAS;
+      texto.appendChild(descripcion);
 
 
-                }
 
-            }
+      let precio = document.createElement("p");
+      if(json.records[j-1].DISPONIBILIDAD.includes('si')){
+        precio.className = 'precio';
+      }
+      else{
+        precio.className = 'precio nodisponible';
+      }
+      if(json.records[j-1].VALOR.includes("Proximamente")){
+        price.textContent = json.records[j-1].VALOR;
+      }
+      else{
+        price.textContent = "USD " + json.records[j-1].VALOR;
+      }
+      texto.appendChild(precio);
 
-            
-          }
-        }
+      let color = document.createElement("div");
+      color.className = 'colorGoma';
+      texto.appendChild(color);
 
+      let pals = document.createElement("small");
+      pals.textContent = "Stock: "+json.records[j-1].CANTIDAD;
+      color.appendChild(pals);
+
+
+      let pop = document.createElement("button");
+      pop.id = "botondetalle";
+      img.appendChild(pop);
+      let popup = document.createElement("a");
+      popup.href="#popup"+j;
+      popup.textContent="Ver Detalles";
+      popup.style = "text-decoration: none; color: white; font-size: 13px;";
+      pop.appendChild(popup);
+
+      let divpop = document.createElement("div");
+      divpop.className="overlay";
+      divpop.id="popup"+j;
+      texto.appendChild(divpop);
+      let divpop2 = document.createElement("div");
+      divpop2.id="popupBody";
+      divpop2.className = "text-center";
+      divpop.appendChild(divpop2);
+      let title = document.createElement("h2");
+      title.textContent = json.records[j-1].CATEGORIA;
+      title.className = "tituloPopup";
+      divpop2.appendChild(title);
+      let close = document.createElement("a");
+      close.textContent="x";
+      close.id="cerrar";
+      close.href="#";
+      divpop2.appendChild(close);
+      let divpop3 = document.createElement("div");
+      divpop3.className="popupContent container";
+      divpop2.appendChild(divpop3);
+
+      let rowpop = document.createElement("div");
+      rowpop.className = "row datos";
+      divpop2.appendChild(rowpop);
+
+      let colpopimg = document.createElement("div");
+      colpopimg.className = "col-xl-12 text-center";
+      rowpop.appendChild(colpopimg);
+
+      let imgpop = document.createElement("img");
+      imgpop.src = "../images/productos/"+json.records[j-1].CODIGOPRODUCTO+".jpg";
+      colpopimg.appendChild(imgpop);
+
+      let colpopTittle = document.createElement("div");
+      colpopTittle.className = "col-xl-12";
+      rowpop.appendChild(colpopTittle);
+      let tittlepop = document.createElement("h3");
+      tittlepop.textContent = json.records[j-1].MARCA + " " + json.records[j-1].NOMBRE + " " + json.records[j-1].COLOR;
+      tittlepop.className = "titulopop";
+      colpopimg.appendChild(tittlepop);
+
+      let colpoptittledescription = document.createElement("div");
+      colpoptittledescription.className = "col-xl-12";
+      rowpop.appendChild(colpoptittledescription);
+      let titledescription = document.createElement("h4");
+      titledescription.textContent = "Descripcion";
+      colpoptittledescription.appendChild(titledescription);
+
+      let colpopdescription = document.createElement("div");
+      colpopdescription.className = "col-xl-12";
+      rowpop.appendChild(colpopdescription);
+      let description = document.createElement("p");
+      description.textContent = json.records[j-1].DESCRIPCION;
+      description.className = "descripcionpop";
+      colpopdescription.appendChild(description);
+
+
+
+      let colpoptittlecarac = document.createElement("div");
+      colpoptittlecarac.className = "col-xl-12";
+      rowpop.appendChild(colpoptittlecarac);
+      let titlecarac = document.createElement("h4");
+      titlecarac.textContent = "Caracteristicas Principales";
+      colpoptittlecarac.appendChild(titlecarac);
+
+      let colpopacarac = document.createElement("div");
+      colpopacarac.className = "col-xl-12";
+      rowpop.appendChild(colpopacarac);
+      let carac = document.createElement("p");
+      carac.textContent = json.records[j-1].CARACTERISTICAS;
+      colpopacarac.appendChild(carac);
+
+      let colpopprice = document.createElement("div");
+      colpopprice.className = "col-xl-12";
+      rowpop.appendChild(colpopprice);
+      let price = document.createElement("p");
+      price.className = "precioPop";
+      if(json.records[j-1].VALOR.includes("Proximamente")){
+        price.textContent = json.records[j-1].VALOR;
+      }
+      else{
+        price.textContent = "USD " + json.records[j-1].VALOR;
+      }
+      colpopprice.appendChild(price);
+
+
+
+      let btnwpp = document.createElement("div");
+      btnwpp.className="btnwpp container"; 
+      divpop.appendChild(btnwpp);
+
+      let awpp = document.createElement("a");
+      awpp.href = "https://api.whatsapp.com/send?phone=+5491130887620&text=%C2%A1Hola%20Matias!%20Me%20gustaria%20hacerte%20una%20consulta%20acerca%20de%20la%20"+json.records[j-1].CATEGORIA+"%20"+json.records[j-1].MARCA+"%20"+json.records[j-1].NOMBRE+"%20Codigo%20de%20producto%20"+json.records[j-1].CODIGOPRODUCTO;
+      awpp.style = "text-decoration: none;";
+      btnwpp.appendChild(awpp);
       
+      let imgwpp = document.createElement("button");
+      awpp.appendChild(imgwpp);
+
+      let txtwpp = document.createElement("p");
+      txtwpp.textContent="Consultar Producto";
+      imgwpp.appendChild(txtwpp);
+
+      }
+
+  }
+
+  
+}
+}
+
+
+
+    
 
     
 
@@ -179,6 +278,7 @@ $.getJSON(url, function (json) {
 		$("#re").css("visibility","visible");
     });
 	}
+
 
   </script>
 
@@ -235,12 +335,31 @@ font-size: 1.8vh;
           </div>
         </div>
         
-
         <div style="margin: 5vh 0 3vh 0;" align="center">
-          <h1>Proximamente Pelotas</h1>
+          <h1>Varios</h1>
         </div>       
         
+        <div class="buscador">
+          <form action="">
+            <input type="search" list="datalistOptions" id="exampleDataList" onkeyup="myFunction()" placeholder="Busqueda por nombre" required>
+            <i class="fa fa-search"></i>
+          </form>
+        </div> 
 
+        <div>
+
+            <p id="re"></p>
+
+            <input id="b1" type="button" onclick="read_value()"class="btn" style="height: 8vh; width: 1vh; font-size: 3vh; margin-bottom: 3vh; display: none; border:1px solid white; color:white;" value="Ver Listado" />
+            
+            <div id="showData">
+            </div>
+
+            <div id="loader" align="center">
+                <lord-icon src="https://cdn.lordicon.com/xjovhxra.json" trigger="loop" colors="primary:#ffffff,secondary:#1e212a" style="width:175px;height:175px"></lord-icon>
+            </div>
+
+        </div>
         
         <section class="footer" style=" margin-top: 6vh;">
             <p class="text" style="color: black;"><a href="https://api.whatsapp.com/send?phone=+5491166965813&text=%C2%A1Hola!%20%C2%BFC%C3%B3mo%20estas?%20Me%20gustar%C3%ADa%20hacerte%20una%20consulta%20acerca%20de%20la%20carta%20digital">Diseño y Desarrollo por Diego Simón</a></p>

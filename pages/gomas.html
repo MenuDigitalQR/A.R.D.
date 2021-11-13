@@ -132,7 +132,12 @@ $.getJSON(url, function (json) {
                 else{
                   precio.className = 'precio nodisponible';
                 }
-                precio.textContent = "USD "+ json.records[j-1].VALOR;
+                if(json.records[j-1].VALOR.includes("Proximamente")){
+                  price.textContent = json.records[j-1].VALOR;
+                }
+                else{
+                  price.textContent = "USD " + json.records[j-1].VALOR;
+                }
                 texto.appendChild(precio);
 
                 let color = document.createElement("div");
@@ -247,7 +252,12 @@ $.getJSON(url, function (json) {
                 rowpop.appendChild(colpopprice);
                 let price = document.createElement("p");
                 price.className = "precioPop";
-                price.textContent = "USD " + json.records[j-1].VALOR;
+                if(json.records[j-1].VALOR.includes("Proximamente")){
+                  price.textContent = json.records[j-1].VALOR;
+                }
+                else{
+                  price.textContent = "USD " + json.records[j-1].VALOR;
+                }
                 colpopprice.appendChild(price);
 
 
