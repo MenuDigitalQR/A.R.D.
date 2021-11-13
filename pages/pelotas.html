@@ -28,7 +28,7 @@ $.getJSON(url, function (json) {
   let categorias = [""];
 
   for(var i = 1; i < json.records.length; i++){ 
-    if(json.records[i-1].CATEGORIA.includes('Varios')){
+    if(json.records[i-1].CATEGORIA.includes('Pelotas')){
       categorias.push(json.records[i-1].MARCA); 
     }
   }
@@ -124,12 +124,9 @@ if( categorias[i] != " " ){
       else{
         precio.className = 'precio nodisponible';
       }
-      if(json.records[j-1].VALOR.includes("Proximamente")){
-        price.textContent = json.records[j-1].VALOR;
-      }
-      else{
-        price.textContent = "USD " + json.records[j-1].VALOR;
-      }
+      
+        precio.textContent = "USD " + json.records[j-1].VALOR;
+     
       texto.appendChild(precio);
 
       let color = document.createElement("div");
@@ -227,12 +224,7 @@ if( categorias[i] != " " ){
       rowpop.appendChild(colpopprice);
       let price = document.createElement("p");
       price.className = "precioPop";
-      if(json.records[j-1].VALOR.includes("Proximamente")){
-        price.textContent = json.records[j-1].VALOR;
-      }
-      else{
         price.textContent = "USD " + json.records[j-1].VALOR;
-      }
       colpopprice.appendChild(price);
 
 
@@ -336,7 +328,7 @@ font-size: 1.8vh;
         </div>
         
         <div style="margin: 5vh 0 3vh 0;" align="center">
-          <h1>Varios</h1>
+          <h1>Pelotas</h1>
         </div>       
         
         <div class="buscador">

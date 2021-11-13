@@ -127,12 +127,7 @@ if( categorias[i] != " " ){
       else{
         precio.className = 'precio nodisponible';
       }
-      if(json.records[j-1].VALOR.includes("Proximamente")){
-        price.textContent = json.records[j-1].VALOR;
-      }
-      else{
-        price.textContent = "USD " + json.records[j-1].VALOR;
-      }
+      precio.textContent = "USD "+ json.records[j-1].VALOR;
       texto.appendChild(precio);
 
       let color = document.createElement("div");
@@ -230,12 +225,7 @@ if( categorias[i] != " " ){
       rowpop.appendChild(colpopprice);
       let price = document.createElement("p");
       price.className = "precioPop";
-      if(json.records[j-1].VALOR.includes("Proximamente")){
-        price.textContent = json.records[j-1].VALOR;
-      }
-      else{
-        price.textContent = "USD " + json.records[j-1].VALOR;
-      }
+      price.textContent = "USD " + json.records[j-1].VALOR;
       colpopprice.appendChild(price);
 
 
