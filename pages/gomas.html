@@ -132,7 +132,14 @@ $.getJSON(url, function (json) {
                 else{
                   precio.className = 'precio nodisponible';
                 }
-                precio.textContent = "USD "+ json.records[j-1].VALOR;
+              
+                if(json.records[j-1].OFERTA > 0){
+                  precio.textContent = "USD "+ json.records[j-1].OFERTA + " " + " " + (100 - ((json.records[j-1].OFERTA * 100)/json.records[j-1].VALOR)) + "%" + " " + " OFF" ;
+                }
+                else{
+                  precio.textContent = "USD "+ json.records[j-1].VALOR;
+                }
+                
                 texto.appendChild(precio);
 
                 let color = document.createElement("div");
@@ -360,7 +367,6 @@ font-size: 1.8vh;
         </div> 
 
         <div>
-
             <p id="re"></p>
 
             <input id="b1" type="button" onclick="read_value()"class="btn" style="height: 8vh; width: 1vh; font-size: 3vh; margin-bottom: 3vh; display: none; border:1px solid white; color:white;" value="Ver Listado" />
