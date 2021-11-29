@@ -127,18 +127,19 @@ if( categorias[i] != " " ){
       else{
         precio.className = 'precio nodisponible';
       }
-
-      if(json.records[j-1].OFERTA > 0){
-        precio.textContent = "USD "+ json.records[j-1].OFERTA + " " + " " + (100 - ((json.records[j-1].OFERTA * 100)/json.records[j-1].VALOR)) + "%" + " " + " OFF" ;
-      }
-      else{
-        precio.textContent = "USD "+ json.records[j-1].VALOR;
-      }
+      precio.textContent = "USD "+ json.records[j-1].VALOR;
       texto.appendChild(precio);
 
-      let color = document.createElement("div");
-      color.className = 'colorGoma';
-      texto.appendChild(color);
+      let oferta = document.createElement("p");
+      oferta.className = "ofert";
+      if(json.records[j-1].OFERTA > 0){
+        oferta.textContent = "USD "+ json.records[j-1].OFERTA ;
+        precio.className="green";
+      }
+      else{
+      }
+      
+      texto.appendChild(oferta);
 
       let pals = document.createElement("small");
       pals.textContent = "Stock: "+json.records[j-1].CANTIDAD;
