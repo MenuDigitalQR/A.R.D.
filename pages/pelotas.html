@@ -128,12 +128,15 @@ if( categorias[i] != " " ){
       texto.appendChild(precio);
 
       let oferta = document.createElement("p");
-      oferta.className = "ofert";
+      
       if(json.records[j-1].OFERTA > 0){
         oferta.textContent = "USD "+ json.records[j-1].OFERTA ;
+        oferta.className = "ofert";
         precio.className="green";
       }
-      else{
+      else if(json.records[j-1].OFERTA =="oferta" ){
+        oferta.textContent = "OFERTA";
+        oferta.className ="textOfer";
       }
       
       texto.appendChild(oferta);
