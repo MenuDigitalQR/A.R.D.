@@ -76,6 +76,27 @@
     position: absolute;
     top: 80%;
   }
+  .green{
+    font-size: 15px; /*2vh*/
+    position: absolute;
+    top: 80%;
+    color: green;
+  }
+  .textOfer{
+    position: absolute;
+    top: 81%;
+    left: 40%;
+    font-size: 13px;
+    color: green;
+  }
+  .ofert{
+    position: absolute;
+    top: 81%;
+    left: 40%;
+    font-size: 13px;
+    color: red;
+    text-decoration:line-through;
+  }
   .desaparece{
     background-color: #d03d41;
     height: 100vh;
