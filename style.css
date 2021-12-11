@@ -280,6 +280,34 @@ margin: 0 0.5vh;
   text-align:center;
   z-index:555;
 }
+.volver {
+  color: black;
+  display:block;
+  height: 30px;
+  background-color: white;
+  position: fixed;
+  left:15px;
+  top:15px;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius:20px;
+  text-align:center;
+  z-index:555;
+}
+.volver i{
+  margin-top: 1px;
+  margin-left: -5px;
+  font-size: 20px;
+}
+.volver p{
+  margin-left: 3px;
+  font-size: 13px;
+}
+.volver a{
+  text-decoration: none;
+  color: black;
+  display: flex;
+}
 .btnwpp{
   display:block;
   position: fixed;
