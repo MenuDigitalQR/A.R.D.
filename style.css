@@ -11,7 +11,7 @@
   }
   .encabezado{
     background-color: #d03d41;
-    background-image: url("images/Portada.jpg");
+    background-image: url("images/portada.jpeg");
     background-size: 100%;
     background-position-y: center;
   }
@@ -21,10 +21,10 @@
     width: 100%;
   }
   .encabezado img{
-    width: 20vh;
+    height: 100px;
     display: block;
     margin: auto;
-    border-radius: 50%;
+
   }
   h1{
     color: black;
