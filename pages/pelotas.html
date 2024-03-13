@@ -143,15 +143,6 @@ if( categorias[i] != " " ){
       texto.appendChild(oferta);
 
 
-      let color = document.createElement("div");
-      color.className = 'colorGoma';
-      texto.appendChild(color);
-
-      let pals = document.createElement("small");
-      pals.textContent = "Stock: "+json.records[j-1].CANTIDAD;
-      color.appendChild(pals);
-
-
       let pop = document.createElement("button");
       pop.id = "botondetalle";
       img.appendChild(pop);

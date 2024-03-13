@@ -149,32 +149,6 @@ $.getJSON(url, function (json) {
                 
                 texto.appendChild(oferta);
 
-                let color = document.createElement("div");
-                color.className = 'colorGoma';
-                texto.appendChild(color);
-
-                let pals = document.createElement("small");
-                pals.textContent = "Stock: ";
-                color.appendChild(pals);
-
-                let colorRojo = document.createElement("div");
-                colorRojo.className = 'colorRojo';
-                color.appendChild(colorRojo);
-
-                let cantidadRojo = document.createElement("small");
-                cantidadRojo.className = 'cantidadGomaRoja';
-                cantidadRojo.textContent = json.records[j-1].CANTIDAD_ROJO;
-                color.appendChild(cantidadRojo);
-
-                let colorNegro = document.createElement("div");
-                colorNegro.className = 'colorNegro';
-                color.appendChild(colorNegro);
-
-                let cantidadNegro = document.createElement("small");
-                cantidadNegro.className = 'cantidadGomaNegro';
-                cantidadNegro.textContent = json.records[j-1].CANTIDAD_NEGRO;
-                color.appendChild(cantidadNegro);
-
                 let pop = document.createElement("button");
                 pop.id = "botondetalle";
                 img.appendChild(pop);
