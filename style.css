@@ -248,7 +248,13 @@ margin: 0 0.5vh;
   border-radius: 50%;
 }
 .nodisponible{
-  /*color: rgb(173, 173, 173);*/
+  color: rgb(173, 173, 173);
+}
+.disabled{
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  cursor: not-allowed; /* Cursor de "no permitido" */
+  opacity: 0.5;
 }
 .stock{
   font-size: 13px;
