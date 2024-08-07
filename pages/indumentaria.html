@@ -249,7 +249,13 @@ if( categorias[i] != " " ){
       txtwpp.textContent="Consultar Producto";
       imgwpp.appendChild(txtwpp);
 
+      if(json.records[j-1].DISPONIBILIDAD.includes('si')){
+      }else{
+        col.className = col.className + " disabled"
       }
+
+
+    }
 
   }
 

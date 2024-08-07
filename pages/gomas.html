@@ -86,6 +86,7 @@ $.getJSON(url, function (json) {
                 col.category = json.records[j-1].MARCA;
                 row.appendChild(col);
 
+
                 // Producto
 
                 let texto = document.createElement("div");
@@ -121,6 +122,7 @@ $.getJSON(url, function (json) {
                   descripcion.className = 'descripcion nodisponible';
                 }
                 descripcion.textContent = json.records[j-1].CARACTERISTICAS;
+                descripcion.textContent = descripcion.textContent;
                 texto.appendChild(descripcion);
 
 
@@ -156,7 +158,9 @@ $.getJSON(url, function (json) {
                 popup.href="#popup"+j;
                 popup.textContent="Ver Detalles";
                 popup.style = "text-decoration: none; color: white; font-size: 13px;";
+                
                 pop.appendChild(popup);
+
 
                 let divpop = document.createElement("div");
                 divpop.className="overlay";
@@ -255,6 +259,11 @@ $.getJSON(url, function (json) {
                 let txtwpp = document.createElement("p");
                 txtwpp.textContent="Consultar Producto";
                 imgwpp.appendChild(txtwpp);
+
+                if(json.records[j-1].DISPONIBILIDAD.includes('si')){
+                }else{
+                  col.className = col.className + " disabled"
+                }
 
                 }
 
